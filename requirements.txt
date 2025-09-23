@@ -1,5 +1,7 @@
 Django==5.2.2
 djangorestframework==3.16.0
 psycopg2==2.9.10
-channels==4.3.0
+channels[daphne]==4.3.0
 channels-redis==4.3.0
+uvicorn==0.35.0
+whitenoise==6.11.0

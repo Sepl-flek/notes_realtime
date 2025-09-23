@@ -11,12 +11,15 @@ services:
       - DB_NAME=dbname
       - DB_USER=dbuser
       - DB_PASS=dbpass
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
 
     command: >
-      sh -c "python manage.py runserver 0.0.0.0:8000"
+      sh -c "daphne -b 0.0.0.0 -p 8000 backend.asgi:application"
 
     depends_on:
       - database
+      - redis
 
 
   database:

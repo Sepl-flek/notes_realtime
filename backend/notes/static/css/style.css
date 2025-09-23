@@ -1,0 +1,26 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f8f9fa;
+}
+
+header {
+    background: #4285f4;
+    color: white;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#editor {
+    width: 100%;
+    height: calc(100vh - 70px);
+    padding: 20px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    resize: none;
+    background: #fff;
+    box-sizing: border-box;
+}

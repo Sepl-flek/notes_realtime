@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GoogleDocs Lite</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>GoogleDocs Lite</h1>
+        <div id="status">🟠 Отключено</div>
+    </header>
+
+    <main>
+        <textarea id="editor" placeholder="Начните писать текст..." autofocus></textarea>
+    </main>
+
+    <script src="{% static 'js/note.js' %}"></script>
+</body>
+</html>

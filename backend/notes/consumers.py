@@ -1,26 +1,20 @@
 import json
-
 from channels.generic.websocket import AsyncWebsocketConsumer
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class NoteConsumer(AsyncWebsocketConsumer):
     async def connect(self):
-        await self.channel_layer.group_add("notes", self.channel_name)
+        logger.info("WebSocket connect from %s", self.scope.get("client"))
         await self.accept()
+        await self.send(text_data=json.dumps({"message": "connected"}))
 
-    async def disconnect(self, code):
-        await self.channel_layer.group_discard("notes", self.channel_name)
-
-    async def receive(self, text_data=None, bytes_data=None):
+    async def receive(self, text_data):
+        logger.info("WebSocket receive: %s", text_data)
         data = json.loads(text_data)
-        await self.channel_layer.group_send(
-            "notes", {
-                "type": "note_message",
-                "message": data.get("message", "")
-            }
-        )
+        await self.send(text_data=json.dumps({"message": f"echo: {data}"}))
 
-    async def note_message(self, event):
-        await self.send(text_data=json.dumps({
-            "message": event["message"]
-            }))
+    async def disconnect(self, close_code):
+        logger.info("WebSocket disconnect: %s", close_code)

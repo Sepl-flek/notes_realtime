@@ -1,8 +1,7 @@
-from django.urls import re_path
+from django.urls import path
 
 from notes.consumers import NoteConsumer
 
 websocket_urlpatterns = [
-    re_path(r"ws/notes/$", NoteConsumer.as_asgi()),
-    
+    path("ws/notes/", NoteConsumer.as_asgi()),
 ]
